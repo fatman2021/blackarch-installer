@@ -1,0 +1,37 @@
+#!/usr/bin/env python
+# -*- coding: latin-1 -*- ######################################################
+#                                                                              #
+# blackarch-installer - Installer for BlackArch Linux                          #
+#                                                                              #
+# FILE                                                                         #
+# blackarch-installer.py                                                       #
+#                                                                              #
+# DATE                                                                         #
+# 2015-02-17                                                                   #
+#                                                                              #
+# AUTHOR                                                                       #
+# Levon 'noptrix' Kayan - <noptrix@nullsecurity.net>                           #
+#                                                                              #
+################################################################################
+
+
+# own imports
+from core.controller import Controller
+
+# sys imports
+import sys
+
+
+if __name__ == "__main__":
+    try:
+        ctrl = Controller()
+        ctrl.start()
+        ctrl.end()
+    except KeyboardInterrupt:
+        sys.stdout.flush()
+        sys.stdout.write("\b\b")
+        sys.stderr.write("[!] WARNING: aborted by user\n")
+        raise SystemExit
+
+
+# EOF
