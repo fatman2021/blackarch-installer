@@ -25,34 +25,66 @@ import sys
 class Wrapper:
     """ class for wrapper methods """
 
+    color = {
+                'normal':   '\033[0m',
+                'bold':     '\033[1m',
+                'white':    '\033[97m',
+                'yellow':   '\033[93m',
+                'red':      '\033[91m',
+                'end':      '\033[0m'
+            }
+
     def __init__(self):
         """ init """
 
         return
 
     @staticmethod
-    def msg(message, verbose=False):
-        """ print (verbose) message """
+    def line(msg, color='normal', bold=False):
+        """ print line """
 
-        print("[+] " + message)
-        if verbose:
-            print("    -> " + message)
+        if bold:
+            print(Wrapper.color['bold'] + Wrapper.color[color] + msg +
+                    Wrapper.color['end'])
+        else:
+            print(Wrapper.color[color] + msg + Wrapper.color['end'])
 
         return
 
     @staticmethod
-    def warn(msg):
+    def ask(msg, color='white', verbose=False):
+        """ ask for message """
+
+        print(Wrapper.color[color] + '[?] ' + msg + Wrapper.color['end'])
+
+        return
+
+    @staticmethod
+    def info(msg, color='white', verbose=False):
+        """ print info message """
+
+        if verbose:
+            print(Wrapper.color[color] + '    -> ' + msg + Wrapper.color['end'])
+        else:
+            print(Wrapper.color[color] + '[+] ' + msg + Wrapper.color['end'])
+
+        return
+
+    @staticmethod
+    def warn(msg, color='yellow'):
         """ print warning message """
 
-        sys.stderr.write("[!] WARNING: " + msg + "\n")
+        sys.stderr.write(Wrapper.color[color] + '[!] WARNING: ' + msg +
+                Wrapper.color['end'] + '\n')
 
         return
 
     @staticmethod
-    def error(msg):
+    def error(msg, color='red'):
         """ print error message and exit """
 
-        sys.stderr.write("[-] ERROR: " + msg + "\n")
+        sys.stderr.write(Wrapper.color[color] + '[-] ERROR: ' + msg +
+                Wrapper.color['end'] + '\n')
         sys.exit(FAILURE)
 
         return

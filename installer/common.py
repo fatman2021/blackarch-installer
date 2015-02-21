@@ -4,7 +4,7 @@
 # blackarch-installer - Installer for BlackArch Linux                          #
 #                                                                              #
 # FILE                                                                         #
-# blackarch-installer.py                                                       #
+# common.py                                                                    #
 #                                                                              #
 # DATE                                                                         #
 # 2015-02-17                                                                   #
@@ -16,23 +16,22 @@
 
 
 # own imports
-from core.controller import Controller
 from core.wrapper import Wrapper
 
 # sys imports
-import sys
+import subprocess
 
 
-if __name__ == "__main__":
-    try:
-        c = Controller()
-        c.start()
-        c.end()
-    except KeyboardInterrupt:
-        sys.stdout.flush()
-        sys.stdout.write("\b\b")
-        Wrapper.warn('aborted by user')
-        raise SystemExit
+class BaseInstaller:
+    """ installer parent class """
+
+    def __init__(self):
+        """ init """
+
+        subprocess.call('clear')
+
+        return
+
 
 
 # EOF

@@ -16,11 +16,17 @@
 
 
 # own imports
+from core.globals import *
 from core.help import Help
 from core.checks import Check
+from core.wrapper import Wrapper
+from core.checks import Check
 from core.parser import Parser
+from installer.text import TextInstaller
+from installer.curses import CursesInstaller
 
 # sys imports
+import sys
 
 
 class Controller:
@@ -34,13 +40,28 @@ class Controller:
 
         return
 
+    def runInstaller(self):
+        """ run installer """
+
+        t = TextInstaller()
+        t.printHeader()
+        t.printSection('Welcome to BlackArch Linux Installation!')
+
+        return
+
     def start(self):
         """ do first needed things """
 
-        # usage, init, etc.
+        # init, usage, checks, etc.
         Help.banner()
-        Check.checkArgc()
         self.opts = vars(Parser.parseArgs())
+        c = Check(self.opts)
+        c.checkArgc()
+        c.checkArgs()
+        c.checkInstallType()
+
+        # install part
+        self.runInstaller()
 
         return
 

@@ -63,7 +63,7 @@ class Parser:
                 help='print this help message'
                 )
 
-        return(parser.parse_args())
+        return (parser.parse_args())
 
 
 # EOF

@@ -4,7 +4,7 @@
 # blackarch-installer - Installer for BlackArch Linux                          #
 #                                                                              #
 # FILE                                                                         #
-# blackarch-installer.py                                                       #
+# curses.py                                                                    #
 #                                                                              #
 # DATE                                                                         #
 # 2015-02-17                                                                   #
@@ -16,23 +16,20 @@
 
 
 # own imports
-from core.controller import Controller
-from core.wrapper import Wrapper
+from installer.common import BaseInstaller
 
 # sys imports
-import sys
 
 
-if __name__ == "__main__":
-    try:
-        c = Controller()
-        c.start()
-        c.end()
-    except KeyboardInterrupt:
-        sys.stdout.flush()
-        sys.stdout.write("\b\b")
-        Wrapper.warn('aborted by user')
-        raise SystemExit
+class CursesInstaller(BaseInstaller):
+    """ curses based installer class """
+
+    def __init__(self):
+        """ init """
+
+        BaseInstaller.__init__(self)
+
+        return
 
 
 # EOF
