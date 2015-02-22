@@ -24,10 +24,16 @@ from installer.common import BaseInstaller
 class CursesInstaller(BaseInstaller):
     """ curses based installer class """
 
-    def __init__(self):
+    def __init__(self, verbose):
         """ init """
 
+        self.verbose = verbose
         BaseInstaller.__init__(self)
+
+        return
+
+    def run(self):
+        """ start here """
 
         return
 

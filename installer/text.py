@@ -26,9 +26,10 @@ import subprocess
 class TextInstaller(BaseInstaller):
     """ text based installer class """
 
-    def __init__(self):
+    def __init__(self, verbose):
         """ init """
 
+        self.verbose = verbose
         BaseInstaller.__init__(self)
 
         return
@@ -58,6 +59,14 @@ class TextInstaller(BaseInstaller):
 
         Wrapper.line('>> ' + section)
         print('\n')
+
+        return
+
+    def run(self):
+        """ start here """
+
+        TextInstaller.printHeader()
+        TextInstaller.printSection('Welcome to BlackArch Linux Installation!')
 
         return
 

@@ -40,15 +40,6 @@ class Controller:
 
         return
 
-    def runInstaller(self):
-        """ run installer """
-
-        t = TextInstaller()
-        t.printHeader()
-        t.printSection('Welcome to BlackArch Linux Installation!')
-
-        return
-
     def start(self):
         """ do first needed things """
 
@@ -60,8 +51,13 @@ class Controller:
         c.checkArgs()
         c.checkInstallType()
 
-        # install part
-        self.runInstaller()
+        # run installer here
+        if self.opts['type'] == 'text':
+            t = TextInstaller(self.opts['verbose'])
+            t.run()
+        else:
+            c = CursesInstaller(self.opts['verbose'])
+            c.run()
 
         return
 
