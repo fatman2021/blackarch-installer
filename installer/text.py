@@ -29,7 +29,13 @@ class TextInstaller(BaseInstaller):
     def __init__(self, verbose):
         """ init """
 
+        # holds all user chosen options
+        self.opts = {}
+
+        # verbose mode
         self.verbose = verbose
+
+        # calls mom and daddy
         BaseInstaller.__init__(self)
 
         return
@@ -62,11 +68,31 @@ class TextInstaller(BaseInstaller):
 
         return
 
+    @staticmethod
+    def getInstallMode():
+        """ get installation mode """
+
+        count = 0
+        answer = ''
+
+        while answer not in ('1', '2', '3'):
+            if count >= 1:
+                Wrapper.warn('incorrect mode\n')
+            Wrapper.info('installation modes:')
+            Wrapper.info('1. install from live-iso', verbose=True)
+            Wrapper.info('2. install from repository', verbose=True)
+            Wrapper.info('3. install from sources using blackman', verbose=True)
+            answer = Wrapper.ask('select mode: ')
+            count += 1
+
+        return answer
+
     def run(self):
         """ start here """
 
         TextInstaller.printHeader()
         TextInstaller.printSection('Welcome to BlackArch Linux Installation!')
+        self.opts['mode'] = TextInstaller.getInstallMode()
 
         return
 

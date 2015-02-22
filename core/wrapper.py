@@ -55,9 +55,9 @@ class Wrapper:
     def ask(msg, color='white', verbose=False):
         """ ask for message """
 
-        print(Wrapper.color[color] + '[?] ' + msg + Wrapper.color['end'])
+        r = input(Wrapper.color[color] + '[?] ' + msg + Wrapper.color['end'])
 
-        return
+        return r
 
     @staticmethod
     def info(msg, color='white', verbose=False):
