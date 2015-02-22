@@ -63,8 +63,7 @@ class TextInstaller(BaseInstaller):
     def printSection(section):
         """ print section heading message """
 
-        Wrapper.line('>> ' + section)
-        print('\n')
+        Wrapper.line('>> ' + section + '\n\n')
 
         return
 
